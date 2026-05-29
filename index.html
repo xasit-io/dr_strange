@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a0508" />
+  <title>Mystic Arts — Hand Magic</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Fullscreen webcam (background layer) -->
+  <video id="webcam" class="webcam" autoplay playsinline muted></video>
+  <canvas id="gl-canvas" class="gl-canvas"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" class="hud">
+    <header class="hud-top">
+      <div class="brand">
+        <span class="glyph">◈</span>
+        <span>Mystic Arts</span>
+      </div>
+      <div class="hud-stats">
+        <span id="fps" class="stat">FPS —</span>
+        <span id="latency" class="stat">Track —</span>
+      </div>
+    </header>
+
+    <div class="hud-center">
+      <div id="gesture-hint" class="gesture-hint" aria-live="polite"></div>
+      <div id="spell-mode" class="spell-mode">Awaiting hands…</div>
+    </div>
+
+    <footer class="hud-bottom">
+      <div class="controls">
+        <button type="button" id="btn-fullscreen" class="btn cyan" title="Fullscreen">⛶</button>
+        <button type="button" id="btn-screenshot" class="btn" title="Screenshot">📷</button>
+        <button type="button" id="btn-record" class="btn" title="Record video">⏺</button>
+        <button type="button" id="btn-effects" class="btn active" title="Toggle VFX">FX</button>
+      </div>
+      <p class="legal">Allow camera access. Move hands in frame.</p>
+    </footer>
+  </div>
+
+  <div id="effects-panel" class="effects-panel hidden" role="dialog" aria-label="Effect toggles">
+    <h3>Visual layers</h3>
+    <label><input type="checkbox" id="fx-bloom" checked /> Bloom</label>
+    <label><input type="checkbox" id="fx-chroma" checked /> Chromatic aberration</label>
+    <label><input type="checkbox" id="fx-motion" checked /> Motion blur / velocity</label>
+    <label><input type="checkbox" id="fx-heat" checked /> Heat distortion</label>
+    <label><input type="checkbox" id="fx-rays" checked /> Light rays</label>
+    <label><input type="checkbox" id="fx-particles" checked /> Particles</label>
+    <button type="button" id="fx-close" class="btn block">Close</button>
+  </div>
+
+  <div id="start-screen" class="start-screen">
+    <div class="start-card">
+      <h1>Mystic Arts</h1>
+      <p>Real-time hand tracking powers your shields, orbs, portals, and spells.</p>
+      <button type="button" id="btn-start" class="btn-start">Begin ritual</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <!-- MediaPipe Hands (global Hands, Camera) -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
